@@ -12,4 +12,4 @@
 
 # Tables and Figures
 * All codes used to generate tables and figures were included in the Allo-HCT_Final.rmd file.
-* The last sheet "Forest plot" in the Excel file was manually created from the exported results in the previous sheets and was used to generate the forest plot.
+* A new sheet "Forest plot" in the Excel file was manually created from the exported results in the previous sheets and was used to generate the forest plot.
