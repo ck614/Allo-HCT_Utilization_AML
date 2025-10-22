@@ -615,7 +615,7 @@ writeData(result_excel, "Raceeth rate", rate_raceeth)
 ```
 
 ### Plot of Percent of Allo-HCT by race/ethnicity group and year of diagnosis
-```{r}
+```{r eval=FALSE, include=FALSE}
 custom_colors <- c("NHW" = "#E41A1C",        
                    "NHB" = "#984ea3",  
                    "NHAPI" = "#FF7F00",
@@ -652,6 +652,38 @@ ggplot(transplant_rate_raceeth_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearrac
         panel.grid.major = element_blank(),
         panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)) +
   scale_x_continuous(breaks = unique(transplant_rate_raceeth_long$YEAR_OF_DIAGNOSIS))
+dev.off()
+```
+
+#### Black White Prints
+```{r}
+tiff("LM_Transplant_rate_race_eth_bw.tiff", units = "in", width = 7, height = 5, res = 300)
+
+ggplot(transplant_rate_raceeth_long, 
+       aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearraceeth, 
+           linetype = race_eth_cat, shape = race_eth_cat, group = race_eth_cat)) +
+  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Allo-HCT Rate by Race/Ethnicity",
+    x = "Year of Diagnosis",
+    y = "Allo-HCT Rate (%)",
+    linetype = "Race/Ethnicity",
+    shape = "Race/Ethnicity"
+  ) +
+  scale_y_continuous(limits = c(0, 25),
+                     breaks = seq(0, 25, by = 5)) +
+  scale_x_continuous(breaks = unique(transplant_rate_raceeth_long$YEAR_OF_DIAGNOSIS)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    legend.position = c(0.14, 0.77),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)
+  )
+
 dev.off()
 ```
 
@@ -796,6 +828,41 @@ ggplot(transplant_rate_insurance_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yeari
 dev.off()
 ```
 
+#### Black White Prints
+```{r}
+tiff("LM_Transplant_rate_insurance_bw.tiff", units = "in", width = 7, height = 5, res = 300)
+
+ggplot(transplant_rate_insurance_long, 
+       aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearinsurance, 
+           linetype = insurance_cat, shape = insurance_cat, group = insurance_cat)) +
+  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Allo-HCT Rate by Insurance",
+    x = "Year of Diagnosis",
+    y = "Allo-HCT Rate (%)",
+    linetype = "Insurance",
+    shape = "Insurance"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 35),
+    breaks = seq(0, 35, by = 5)) +
+  scale_x_continuous(breaks = unique(transplant_rate_insurance_long$YEAR_OF_DIAGNOSIS)) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +
+  scale_shape_manual(values = c(16, 17, 15, 3)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    legend.position = c(0.15, 0.80),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)
+  )
+
+dev.off()
+```
+
 ### Linear model for year of diagnosis * insurance
 ```{r}
 lm_model_insurance <- lmer(transplant_cat ~ sex + race_eth_cat +
@@ -934,6 +1001,41 @@ ggplot(transplant_rate_education_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yeare
         panel.grid.major = element_blank(),
         panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)) +
   scale_x_continuous(breaks = unique(transplant_rate_education_long$YEAR_OF_DIAGNOSIS))
+dev.off()
+```
+
+#### Black White Prints
+```{r}
+tiff("LM_Transplant_rate_education_bw.tiff", units = "in", width = 7, height = 5, res = 300)
+
+ggplot(transplant_rate_education_long, 
+       aes(x = YEAR_OF_DIAGNOSIS, y = rate_yeareducation, 
+           linetype = education_cat, shape = education_cat, group = education_cat)) +
+  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Allo-HCT Rate by Zip-code–level Education",
+    x = "Year of Diagnosis",
+    y = "Allo-HCT Rate (%)",
+    linetype = "Zip-code–level Education",
+    shape = "Zip-code–level Education"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 25),
+    breaks = seq(0, 25, by = 5)) +
+  scale_x_continuous(breaks = unique(transplant_rate_education_long$YEAR_OF_DIAGNOSIS)) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +
+  scale_shape_manual(values = c(16, 17, 15, 3)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    legend.position = c(0.18, 0.80),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)
+  )
+
 dev.off()
 ```
 
@@ -1077,6 +1179,41 @@ ggplot(transplant_rate_income_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearinco
 dev.off()
 ```
 
+#### Black White Prints
+```{r}
+tiff("LM_Transplant_rate_income_bw.tiff", units = "in", width = 7, height = 5, res = 300)
+
+ggplot(transplant_rate_income_long, 
+       aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearincome, 
+           linetype = income_cat, shape = income_cat, group = income_cat)) +
+  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Allo-HCT Rate by Zip-code–level Income",
+    x = "Year of Diagnosis",
+    y = "Allo-HCT Rate (%)",
+    linetype = "Zip-code–level Income",
+    shape = "Zip-code–level Income"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 20),
+    breaks = seq(0, 20, by = 5)) +
+  scale_x_continuous(breaks = unique(transplant_rate_income_long$YEAR_OF_DIAGNOSIS)) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +
+  scale_shape_manual(values = c(16, 17, 15, 3)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    legend.position = c(0.16, 0.80),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)
+  )
+
+dev.off()
+```
+
 ### Linear model for year of diagnosis * income Level
 ```{r}
 lm_model_income <- lmer(transplant_cat ~ sex + race_eth_cat +
@@ -1213,6 +1350,41 @@ ggplot(transplant_rate_facitype_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearfa
         panel.grid.major = element_blank(),
         panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)) +
   scale_x_continuous(breaks = unique(transplant_rate_facitype_long$YEAR_OF_DIAGNOSIS))
+dev.off()
+```
+
+#### Black White Prints
+```{r}
+tiff("LM_Transplant_rate_facilitytype_bw.tiff", units = "in", width = 7, height = 5, res = 300)
+
+ggplot(transplant_rate_facitype_long, 
+       aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearfacitype, 
+           linetype = facility_type_cat, shape = facility_type_cat, group = facility_type_cat)) +
+  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_point(size = 1.5) +
+  labs(
+    title = "Allo-HCT Rate by Facility Type",
+    x = "Year of Diagnosis",
+    y = "Allo-HCT Rate (%)",
+    linetype = "Facility Type",
+    shape = "Facility Type"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 25),
+    breaks = seq(0, 25, by = 5)) +
+  scale_x_continuous(breaks = unique(transplant_rate_facitype_long$YEAR_OF_DIAGNOSIS)) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted")) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 0.5),
+    plot.title = element_text(hjust = 0.5, size = 14),
+    legend.position = c(0.225, 0.825),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.major.y = element_line(color = "gray", linewidth = 0.3)
+  )
+
 dev.off()
 ```
 
