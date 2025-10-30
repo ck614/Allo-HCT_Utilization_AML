@@ -630,7 +630,7 @@ custom_labels <- c("NHW" = "Non-Hispanic White",
 
 tiff("LM Transplant rate race_eth.tiff", units = "in", width = 7, height = 5, res = 300)
 ggplot(transplant_rate_raceeth_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearraceeth, color = race_eth_cat, group = race_eth_cat)) +
-  geom_smooth(se = TRUE, method = "lm", alpha = 0.25) +
+  geom_smooth(se = FALSE, method = "lm", alpha = 0.25) +
   scale_color_manual(values = custom_colors, 
                      labels = custom_labels) +
 #  geom_point() +
@@ -662,7 +662,7 @@ tiff("LM_Transplant_rate_race_eth_bw.tiff", units = "in", width = 7, height = 5,
 ggplot(transplant_rate_raceeth_long, 
        aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearraceeth, 
            linetype = race_eth_cat, shape = race_eth_cat, group = race_eth_cat)) +
-  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_smooth(se = FALSE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
   geom_point(size = 1.5) +
   labs(
     title = "Allo-HCT Rate by Race/Ethnicity",
@@ -805,7 +805,7 @@ custom_labels <- c("Private" = "Private",
 
 tiff("LM Transplant rate insurance.tiff", units = "in", width = 7, height = 5, res = 300)
 ggplot(transplant_rate_insurance_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearinsurance, color = insurance_cat, group = insurance_cat)) +
-  geom_smooth(se = TRUE, method = "lm", alpha = 0.25) +
+  geom_smooth(se = FALSE, method = "lm", alpha = 0.25) +
   scale_color_manual(values = custom_colors, labels = custom_labels) +
   geom_point() +
   labs(
@@ -835,7 +835,7 @@ tiff("LM_Transplant_rate_insurance_bw.tiff", units = "in", width = 7, height = 5
 ggplot(transplant_rate_insurance_long, 
        aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearinsurance, 
            linetype = insurance_cat, shape = insurance_cat, group = insurance_cat)) +
-  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_smooth(se = FALSE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
   geom_point(size = 1.5) +
   labs(
     title = "Allo-HCT Rate by Insurance",
@@ -980,7 +980,7 @@ custom_labels <- c("Lowest Category" = "1st quartile (lowest)",
 
 tiff("LM Transplant rate education.tiff", units = "in", width = 7, height = 5, res = 300)
 ggplot(transplant_rate_education_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yeareducation, color = education_cat, group = education_cat)) +
-  geom_smooth(se = TRUE, method = "lm", alpha = 0.25) +
+  geom_smooth(se = FALSE, method = "lm", alpha = 0.25) +
   scale_color_manual(values = custom_colors,
                      labels = custom_labels) +
   geom_point() +
@@ -1011,7 +1011,7 @@ tiff("LM_Transplant_rate_education_bw.tiff", units = "in", width = 7, height = 5
 ggplot(transplant_rate_education_long, 
        aes(x = YEAR_OF_DIAGNOSIS, y = rate_yeareducation, 
            linetype = education_cat, shape = education_cat, group = education_cat)) +
-  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_smooth(se = FALSE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
   geom_point(size = 1.5) +
   labs(
     title = "Allo-HCT Rate by Zip-code–level Education",
@@ -1156,7 +1156,7 @@ custom_labels <- c("Lowest Category" = "1st quartile (lowest)",
 
 tiff("LM Transplant rate income.tiff", units = "in", width = 7, height = 5, res = 300)
 ggplot(transplant_rate_income_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearincome, color = income_cat, group = income_cat)) +
-  geom_smooth(se = TRUE, method = "lm", alpha = 0.25) +
+  geom_smooth(se = FALSE, method = "lm", alpha = 0.25) +
   scale_color_manual(values = custom_colors, labels = custom_labels) +
   geom_point() +
   labs(
@@ -1186,7 +1186,7 @@ tiff("LM_Transplant_rate_income_bw.tiff", units = "in", width = 7, height = 5, r
 ggplot(transplant_rate_income_long, 
        aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearincome, 
            linetype = income_cat, shape = income_cat, group = income_cat)) +
-  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_smooth(se = FALSE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
   geom_point(size = 1.5) +
   labs(
     title = "Allo-HCT Rate by Zip-code–level Income",
@@ -1330,7 +1330,7 @@ custom_labels <- c("Academic/Research Program" = "Academic/research program",
 
 tiff("LM Transplant rate facitype.tiff", units = "in", width = 7, height = 5, res = 300)
 ggplot(transplant_rate_facitype_long, aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearfacitype, color = facility_type_cat, group = facility_type_cat)) +
-  geom_smooth(se = TRUE, method = "lm", alpha = 0.25) +
+  geom_smooth(se = FALSE, method = "lm", alpha = 0.25) +
   scale_color_manual(values = custom_colors, labels = custom_labels) +
   geom_point() +
   labs(
@@ -1360,7 +1360,7 @@ tiff("LM_Transplant_rate_facilitytype_bw.tiff", units = "in", width = 7, height 
 ggplot(transplant_rate_facitype_long, 
        aes(x = YEAR_OF_DIAGNOSIS, y = rate_yearfacitype, 
            linetype = facility_type_cat, shape = facility_type_cat, group = facility_type_cat)) +
-  geom_smooth(se = TRUE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
+  geom_smooth(se = FALSE, method = "lm", color = "black", alpha = 0.15, linewidth = 0.6) +
   geom_point(size = 1.5) +
   labs(
     title = "Allo-HCT Rate by Facility Type",
